@@ -1,0 +1,143 @@
+import enum
+
+class RoomType(enum.Enum):
+  standard = 1
+  deluxe = 2
+  royal_deluxe = 3
+  penthouse = 4
+
+class PaymentMethod(enum.Enum):
+    card = 1
+    cash = 2
+
+class Reservation:
+  """Opening class for Reservations"""
+  def __init__(self, rID="", roomType=RoomType.standard, numOfRooms=0, numOfGuests=0):
+    self.__rID = rID
+    self.__roomType = roomType
+    self.__numOfRooms = numOfRooms
+    self.__numOfGuests = numOfGuests
+
+  # function to display reservation info
+
+  def __str__(self):
+    return ("ID: " + self.__rID + " Room Type: " + str(self.__roomType) + " No. of Rooms: " + str(self.__numOfRooms) + " No. of Guests" + str(self.__numOfGuests))
+
+  # setter getter functions for all attributes
+
+  def set_rID(self, rID):
+    self.__rID = rID
+
+  def get_rID(self):
+    return self.__rID
+
+  def set_numOfRooms(self, numOfRooms):
+    self.__numOfRooms = numOfRooms
+
+  def get_numOfRooms(self):
+    return self.__numOfRooms
+
+  def set_numOfGuests(self, numOfGuests):
+    self.__numOfGuests = numOfGuests
+
+  def get_numOfGuests(self):
+    return self.__numOfGuests
+
+class Customer:
+    """Opening class for Customers"""
+    def __init__(self, cName, cEmail, cPhoneNum):
+        self.__cName = cName
+        self.__cEmail = cEmail
+        self.__cPhoneNum = cPhoneNum
+
+    # function to display customer info
+
+    def __str__(self):
+        return ("Name: " + self.__cName + " Email: " + str(self.__cEmail) + " Phone No.: " + self.__cPhoneNum)
+
+    # setter getter functions for all attributes
+
+    def set_cName(self, cName):
+        self.__cName = cName
+
+    def get_cName(self):
+        return self.__cName
+
+    def set_cEmail(self, cEmail):
+        self.__cEmail = cEmail
+
+    def get_cEmail(self):
+        return self.__cEmail
+
+    def set_cPhoneNum(self, cPhoneNum):
+        self.__cPhoneNum = cPhoneNum
+
+    def get_cPhoneNum(self):
+        return self.__cPhoneNum
+
+class Room:
+    """Opening class for Customers"""
+    def __init__(self, roomType=RoomType.standard, availability=True, pricePerNight=0.0):
+        self.__roomType = roomType
+        self.__availability = availability
+        self.__pricePerNight = pricePerNight
+
+    # function to display room info
+
+    def __str__(self):
+        return ("Availability: " + str(self.__availability) + " $/night: " + str(self.__pricePerNight))
+
+    # setter getter functions for all attributes
+
+    def set_roomType(self, roomType):
+        self.__roomType = roomType
+
+    def get_roomType(self):
+        return self.__roomType
+
+    def set_availability(self, availability):
+        self.__availability = availability
+
+    def get_availability(self):
+        return self.__availability
+
+    def set_pricePerNight(self, pricePerNight):
+        self.__pricePerNight = pricePerNight
+
+    def get_pricePerNight(self):
+        return self.__pricePerNight
+
+class Payment:
+    """Opening class for Customers"""
+    def __init__(self, paymentMethod=PaymentMethod.cash, amount=0.0):
+        self.__paymentMethod = paymentMethod
+        self.__amount = amount
+
+    # function to display payment info
+
+    def __str__(self):
+        return ("PaymentMethod: " + str(self.__paymentMethod) + " Amount: " + str(self.__amount))
+
+    # setter getter functions for all attributes
+
+    def set_paymentMethod(self, paymentMethod):
+        self.__paymentMethod = paymentMethod
+
+    def get_payment_method(self):
+        return self.__paymentMethod
+
+    def set_amount(self, amount):
+        self.__amount = amount
+
+    def get_amount(self):
+        return self.__amount
+
+reservation = Reservation("23587", 1, 1, 1)
+customer = Customer("Jack", "jgarrick@hotmail.com", "555-659-568")
+room = Room(1, True, 59.99)
+payment = Payment(1, 62.99)
+
+print(reservation)
+print(customer)
+print(room)
+print(payment)
