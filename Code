@@ -4,7 +4,7 @@ class RoomType(Enum):
   standard = "Standard"
   deluxe = "Deluxe"
   royal_deluxe = "Royal Deluxe"
-  penthouse = 4
+  penthouse = "penthouse"
 
 class PaymentMethod(Enum):
     card = "Card"
