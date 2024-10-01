@@ -1,67 +1,86 @@
-import enum
+from enum import Enum
 
-class RoomType(enum.Enum):
-  standard = 1
-  deluxe = 2
-  royal_deluxe = 3
+class RoomType(Enum):
+  standard = "Standard"
+  deluxe = "Deluxe"
+  royal_deluxe = "Royal Deluxe"
   penthouse = 4
 
-class PaymentMethod(enum.Enum):
-    card = 1
-    cash = 2
+class PaymentMethod(Enum):
+    card = "Card"
+    cash = "Cash"
 
 class Reservation:
   """Opening class for Reservations"""
-  def __init__(self, rID="", roomType=RoomType.standard, numOfRooms=0, numOfGuests=0):
+  def __init__(self, rID, roomType, numOfRooms, numOfGuests, wifiIncluded):
     self.__rID = rID
     self.__roomType = roomType
     self.__numOfRooms = numOfRooms
     self.__numOfGuests = numOfGuests
-
-  # function to display reservation info
-
-  def __str__(self):
-    return ("ID: " + self.__rID + " Room Type: " + str(self.__roomType) + " No. of Rooms: " + str(self.__numOfRooms) + " No. of Guests" + str(self.__numOfGuests))
+    self.__wifiIncluded = wifiIncluded
 
   # setter getter functions for all attributes
-
   def set_rID(self, rID):
-    self.__rID = rID
+      self.__rID = rID
 
   def get_rID(self):
-    return self.__rID
+      return self.__rID
+
+  def set_roomType(self, roomType):
+      self.__roomType = roomType
+
+  def get_roomType(self):
+      return self.__roomType
 
   def set_numOfRooms(self, numOfRooms):
-    self.__numOfRooms = numOfRooms
+      self.__numOfRooms = numOfRooms
 
   def get_numOfRooms(self):
-    return self.__numOfRooms
+      return self.__numOfRooms
 
   def set_numOfGuests(self, numOfGuests):
-    self.__numOfGuests = numOfGuests
+      self.__numOfGuests = numOfGuests
 
   def get_numOfGuests(self):
-    return self.__numOfGuests
+      return self.__numOfGuests
+
+  def set_wifiIncluded(self, wifiIncluded):
+      self.__wifiIncluded = wifiIncluded
+
+  def get_wifiIncluded(self):
+      return self.__wifiIncluded
+
+  # function to display reservation info
+  def __str__(self):
+    return ("Room ID: " + str(self.__rID) + " Room Type: " + str(self.__roomType) + " No. of Rooms: " + str(self.__numOfRooms) + " No. of Guests: " + str(self.__numOfGuests) + " Wi-Fi Included: " + str(self.__wifiIncluded))
 
 class Customer:
     """Opening class for Customers"""
-    def __init__(self, cName, cEmail, cPhoneNum):
-        self.__cName = cName
+    def __init__(self, fName, lName, age, cEmail, cPhoneNum):
+        self.__fName = fName
+        self.__lName = lName
+        self.__age = age
         self.__cEmail = cEmail
         self.__cPhoneNum = cPhoneNum
 
-    # function to display customer info
-
-    def __str__(self):
-        return ("Name: " + self.__cName + " Email: " + str(self.__cEmail) + " Phone No.: " + self.__cPhoneNum)
-
     # setter getter functions for all attributes
+    def set_fName(self, fName):
+        self.__fName = fName
 
-    def set_cName(self, cName):
-        self.__cName = cName
+    def get_fName(self):
+        return self.__fName
 
-    def get_cName(self):
-        return self.__cName
+    def set_lName(self, lName):
+        self.__lName = lName
+
+    def get_lName(self):
+        return self.__lName
+
+    def set_age(self, age):
+        self.__age = age
+
+    def get_age(self):
+        return self.__age
 
     def set_cEmail(self, cEmail):
         self.__cEmail = cEmail
@@ -75,20 +94,20 @@ class Customer:
     def get_cPhoneNum(self):
         return self.__cPhoneNum
 
+     # function to display customer info
+    def __str__(self):
+        return ("FName: " + self.__fName + " LName: " + self.__lName + " Age: " + str(self.__age) + " Email: " + self.__cEmail + " Phone No.: " + self.__cPhoneNum)
+
 class Room:
     """Opening class for Customers"""
-    def __init__(self, roomType=RoomType.standard, availability=True, pricePerNight=0.0):
+    def __init__(self, roomType, availability, pricePerNight, numOfBedrooms, BalconyView):
         self.__roomType = roomType
         self.__availability = availability
         self.__pricePerNight = pricePerNight
-
-    # function to display room info
-
-    def __str__(self):
-        return ("Availability: " + str(self.__availability) + " $/night: " + str(self.__pricePerNight))
+        self.__numOfBedrooms = numOfBedrooms
+        self.__BalconyView = BalconyView
 
     # setter getter functions for all attributes
-
     def set_roomType(self, roomType):
         self.__roomType = roomType
 
@@ -107,16 +126,30 @@ class Room:
     def get_pricePerNight(self):
         return self.__pricePerNight
 
+    def set_numOfBedrooms(self, numOfBedrooms):
+        self.__numOfBedrooms = numOfBedrooms
+
+    def get_numOfBedrooms(self):
+        return self.__numOfBedrooms
+
+    def set_BalconyView(self, BalconyView):
+        self.__BalconyView = BalconyView
+
+    def get_BalconyView(self):
+        return self.__BalconyView
+
+    # function to display room info
+    def __str__(self):
+        return ("Room Type: " + self.__roomType + " Availability: " + str(self.__availability) + " $/night: $" + str(self.__pricePerNight) + " No. of Bedrooms: " + str(self.__numOfBedrooms) + " Balcony View: " + str(self.__BalconyView))
+
 class Payment:
     """Opening class for Customers"""
-    def __init__(self, paymentMethod=PaymentMethod.cash, amount=0.0):
+    def __init__(self, paymentMethod, subtotal, vatPercentage, vat, grandTotal):
         self.__paymentMethod = paymentMethod
-        self.__amount = amount
-
-    # function to display payment info
-
-    def __str__(self):
-        return ("PaymentMethod: " + str(self.__paymentMethod) + " Amount: " + str(self.__amount))
+        self.__subtotal = subtotal
+        self.__vatPercentage = vatPercentage
+        self.__vat = vat
+        self.__grandTotal = grandTotal
 
     # setter getter functions for all attributes
 
@@ -126,16 +159,38 @@ class Payment:
     def get_payment_method(self):
         return self.__paymentMethod
 
-    def set_amount(self, amount):
-        self.__amount = amount
+    def set_subtotal(self, subtotal):
+        self.__subtotal = subtotal
 
-    def get_amount(self):
-        return self.__amount
+    def get_subtotal(self):
+        return self.__subtotal
 
-reservation = Reservation("23587", 1, 1, 1)
-customer = Customer("Jack", "jgarrick@hotmail.com", "555-659-568")
-room = Room(1, True, 59.99)
-payment = Payment(1, 62.99)
+    def set_vatPercentage(self, vatPercentage):
+        self.__vatPercentage = vatPercentage
+
+    def get_vatPercentage(self):
+        return self.__vatPercentage
+
+    def set_vat(self, vat):
+        self.__vat = vat
+
+    def get_vat(self):
+        return self.__vat
+
+    def set_grandTotal(self, grandTotal):
+        self.__grandTotal = grandTotal
+
+    def get_grandTotall(self):
+        return self.__grandTotal
+
+    # function to display payment info
+    def __str__(self):
+        return ("Payment Method: " + str(self.__paymentMethod) + " Sub Total: $" + str(self.__subtotal) + " VAT %: " + str(self.__vatPercentage) + "% VAT: $" + str(self.__vat) + " Grand Total: $" + str(self.__grandTotal))
+
+reservation = Reservation(182, RoomType.standard.value, 3, 6, True)
+customer = Customer("Jack", "Black", 27, "jblack@hotmail.com", "555-659-568")
+room = Room(RoomType.standard.value, True, 100, 2, True)
+payment = Payment(PaymentMethod.card.value, 100, 5, 5, 105)
 
 print(reservation)
 print(customer)
